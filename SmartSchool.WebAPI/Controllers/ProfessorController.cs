@@ -11,9 +11,11 @@ namespace SmartSchool.WebAPI.Controllers
     public class ProfessorController : ControllerBase
     {
         public readonly SmartContext _context;
+        private readonly IRepository _repo;
 
-        public ProfessorController(SmartContext context)    //Recebe nosso banco de dados como context
+        public ProfessorController(SmartContext context, IRepository repo)    //Recebe nosso banco de dados como context
         {
+            _repo = repo;
             _context = context;
         }
 
@@ -29,7 +31,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var professor = _context.Professores.FirstOrDefault(p => p.Id == id);
-            if (professor == null) return BadRequest($"'{professor.Nome}' não encontrado!");
+            if (professor == null) return BadRequest($"Professor não encontrado!");
 
             return Ok(professor);
         }
@@ -38,7 +40,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetByName(string nome)
         {
             var professor = _context.Professores.FirstOrDefault(p => p.Nome.Contains(nome));
-            if (professor == null) return BadRequest($"'{professor.Nome}' não encontrado!");
+            if (professor == null) return BadRequest($"Professor não encontrado!");
 
             return Ok(professor);
         }
@@ -47,9 +49,13 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPost]   //Adiciona ao banco de dados
         public IActionResult Post(Professor professor)
         {
-            _context.Add(professor);
-            _context.SaveChanges();
-            return Ok($"'{professor.Nome}' adicionado com sucesso!");
+            _repo.Add(professor);
+            if (_repo.SaveChanges())
+            {
+                return Ok(professor);
+            };
+
+            return BadRequest($"Professor não cadastrado!");
         }
 
         // Rota /api/professor/1
@@ -57,10 +63,15 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Put(int id, Professor professor)
         {
             var prof = _context.Professores.AsNoTracking().FirstOrDefault(p => p.Id == id);
-            if(prof == null) return BadRequest($"'{professor.Nome}' não encontrado!");
-            _context.Update(professor);
-            _context.SaveChanges();
-            return Ok($"Professor atualizado com sucesso!");
+            if (prof == null) return BadRequest($"Professor não encontrado!");
+            
+            _repo.Update(professor);
+            if (_repo.SaveChanges())
+            {
+                return Ok(professor);
+            };
+
+            return BadRequest($"Professor não cadastrado!");
         }
 
         // Rota /api/professor/1
@@ -68,22 +79,31 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Patch(int id, Professor professor)
         {
             var prof = _context.Professores.AsNoTracking().FirstOrDefault(p => p.Id == id);
-            if(prof == null) return BadRequest($"'{prof.Nome}' não foi encontrado!");
-            _context.Update(professor);
-            _context.SaveChanges();
-            return Ok("Professor foi atualizado com sucesso!");
+            if (prof == null) return BadRequest($"Professor não foi encontrado!");
+            
+            _repo.Update(professor);
+            if (_repo.SaveChanges())
+            {
+                return Ok(professor);
+            };
+
+            return BadRequest($"Professor não cadastrado!");
         }
-        
+
         // Rota /api/professor/1
         [HttpDelete("{id}")]   //Pega todos os professores
         public IActionResult Delete(int id)
         {
             var professor = _context.Professores.FirstOrDefault(p => p.Id == id);
-            if(professor == null) return BadRequest($"Aluno não foi encontrado!");
+            if (professor == null) return BadRequest($"Professor não foi encontrado!");
 
-            _context.Remove(professor);
-            _context.SaveChanges();
-            return Ok($"'{professor.Nome}' deletado com sucesso!");
+            _repo.Delete(professor);
+            if (_repo.SaveChanges())
+            {
+                return Ok(professor);
+            };
+
+            return BadRequest($"Professor não cadastrado!");
 
         }
     }
