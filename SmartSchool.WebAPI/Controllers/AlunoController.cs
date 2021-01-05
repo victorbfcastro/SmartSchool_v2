@@ -24,24 +24,25 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpGet]   //Pega todos os alunos
         public IActionResult Get()
         {
-            return Ok(_context.Alunos);
+            var result = _repo.GetAllAlunos(true);
+            return Ok(result);
         }
 
         //Rota /api/aluno/byid/1
-        [HttpGet("byId/{id}")]  //Pega um aluno pelo Id
+        [HttpGet("{id}")]  //Pega um aluno pelo Id
         public IActionResult GetById(int id)
         {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
+            var aluno = _repo.GetAlunoById(id, false);
             if (aluno == null) return BadRequest($"Aluno não encontrado!");
 
             return Ok(aluno);
         }
-        //Rota /api/aluno/byname?name=Paulo&sobrenome=José
-        [HttpGet("byName")] //Pega um aluno pelo nome e sobrenome via querystring (?nome=Exemplo&sobrenome=Exemplo)
-        public IActionResult GetByName(string nome, string sobrenome)
+
+        [HttpGet("disciplinaid/{id}")]  //Pega um aluno pelo Id
+        public IActionResult GetByDisciplinaId(int id)
         {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Nome.Contains(nome) && a.Sobrenome.Contains(sobrenome));
-            if (aluno == null) return BadRequest("Aluno não encontrado!");
+            var aluno = _repo.GetAllAlunosByDisciplinaId(id, true);
+            if (aluno == null) return BadRequest($"Aluno não encontrado!");
 
             return Ok(aluno);
         }
