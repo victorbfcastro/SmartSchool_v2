@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vfontour\\source\\repos\\Smartschool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj": {}
+    "C:\\Users\\vfontour\\source\\repos\\SmartSchool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vfontour\\source\\repos\\Smartschool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj": {
+    "C:\\Users\\vfontour\\source\\repos\\SmartSchool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vfontour\\source\\repos\\Smartschool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\vfontour\\source\\repos\\SmartSchool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj",
         "projectName": "SmartSchool.WebAPI",
-        "projectPath": "C:\\Users\\vfontour\\source\\repos\\Smartschool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj",
+        "projectPath": "C:\\Users\\vfontour\\source\\repos\\SmartSchool\\SmartSchool.WebAPI\\SmartSchool.WebAPI.csproj",
         "packagesPath": "C:\\Users\\vfontour\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vfontour\\source\\repos\\Smartschool\\SmartSchool.WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\vfontour\\source\\repos\\SmartSchool\\SmartSchool.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[3.1.2, )"

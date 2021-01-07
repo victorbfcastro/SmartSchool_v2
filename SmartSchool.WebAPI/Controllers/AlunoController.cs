@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -11,21 +13,23 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class AlunoController : ControllerBase
     {
-        private readonly SmartContext _context;
         public readonly IRepository _repo;
+        private readonly IMapper _mapper;
 
-        public AlunoController(SmartContext context, IRepository repo)    //Recebe nosso banco de dados como context
+        public AlunoController(IRepository repo, IMapper mapper)    //Recebe nosso banco de dados como context
         {
+            _mapper = mapper;
             _repo = repo;
-            _context = context;
+
         }
 
         //Rota /api/aluno
         [HttpGet]   //Pega todos os alunos
         public IActionResult Get()
         {
-            var result = _repo.GetAllAlunos(true);
-            return Ok(result);
+            var alunos = _repo.GetAllAlunos(true);
+
+            return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
 
         //Rota /api/aluno/byid/1
@@ -33,7 +37,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var aluno = _repo.GetAlunoById(id, false);
-            if (aluno == null) return BadRequest($"Aluno não encontrado!");
+            if (aluno == null) return BadRequest("Aluno não encontrado!");
 
             return Ok(aluno);
         }
@@ -42,7 +46,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetByDisciplinaId(int id)
         {
             var aluno = _repo.GetAllAlunosByDisciplinaId(id, true);
-            if (aluno == null) return BadRequest($"Aluno não encontrado!");
+            if (aluno == null) return BadRequest("Aluno não encontrado!");
 
             return Ok(aluno);
         }
@@ -52,7 +56,8 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Post(Aluno aluno)
         {
             _repo.Add(aluno);
-            if (_repo.SaveChanges()){
+            if (_repo.SaveChanges())
+            {
                 return Ok(aluno);
             };
 
@@ -63,11 +68,12 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPut("{id}")]   //Atualiza o banco de dados
         public IActionResult Put(int id, Aluno aluno)
         {
-            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            if (alu == null) return BadRequest($"Aluno não encontrado!");
-            
+            var alu = _repo.GetAlunoById(id, false);
+            if (alu == null) return BadRequest("Aluno não foi encontrado!");
+
             _repo.Update(aluno);
-            if (_repo.SaveChanges()){
+            if (_repo.SaveChanges())
+            {
                 return Ok(aluno);
             };
 
@@ -78,11 +84,12 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPatch("{id}")]   //Atualiza o banco de dados
         public IActionResult Patch(int id, Aluno aluno)
         {
-            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            if (alu == null) return BadRequest($"Aluno não foi encontrado!");
-            
+            var alu = _repo.GetAlunoById(id, false);
+            if (alu == null) return BadRequest("Aluno não foi encontrado!");
+
             _repo.Update(aluno);
-            if (_repo.SaveChanges()){
+            if (_repo.SaveChanges())
+            {
                 return Ok(aluno);
             };
 
@@ -93,16 +100,16 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpDelete("{id}")]   //Pega todos os alunos
         public IActionResult Delete(int id)
         {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
-            if (aluno == null) return BadRequest($"Aluno não foi encontrado!");
+            var alu = _repo.GetAlunoById(id, false);
+            if (alu == null) return BadRequest("Aluno não foi encontrado!");
 
-            _repo.Delete(aluno);
-            if (_repo.SaveChanges()){
-                return Ok("Aluno deletado!");
+            _repo.Delete(alu);
+            if (_repo.SaveChanges())
+            {
+                return Ok(alu);
             };
 
-            return BadRequest($"Aluno não deletado!");
-
+            return BadRequest($"Aluno não removido!");
         }
     }
 }
