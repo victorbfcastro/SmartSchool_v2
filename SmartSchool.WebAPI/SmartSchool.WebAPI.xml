@@ -59,10 +59,35 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:SmartSchool.WebAPI.Controllers.ProfessorController">
+        <member name="T:SmartSchool.WebAPI.Controllers.DisciplinaController">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.DisciplinaController.#ctor(SmartSchool.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.DisciplinaController.Get">
+            <summary>
+            Método responsável por retornar todas as disciplinas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.DisciplinaController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar uma disciplina identificada pelo ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartSchool.WebAPI.Controllers.ProfessorController">
+             <summary>
+            
+             </summary>
         </member>
         <member name="M:SmartSchool.WebAPI.Controllers.ProfessorController.#ctor(SmartSchool.WebAPI.Data.IRepository,AutoMapper.IMapper)">
             <summary>
@@ -109,7 +134,7 @@
         </member>
         <member name="M:SmartSchool.WebAPI.Controllers.ProfessorController.Delete(System.Int32)">
             <summary>
-            Método responsável por remover um professor
+            Método responsável por remover um professor identificado pelo ID
             </summary>
             <param name="id"></param>
             <returns></returns>

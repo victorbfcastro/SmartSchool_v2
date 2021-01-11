@@ -40,7 +40,7 @@ namespace SmartSchool.WebAPI
                     "SmartSchoolAPI", 
                     new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
-                    Title = "smartschoolapi",
+                    Title = "SmartSchool API",
                     Version = "1.0"
                     }
                 );
@@ -68,7 +68,7 @@ namespace SmartSchool.WebAPI
 
             app.UseSwagger()
             .UseSwaggerUI(options => {
-                options.SwaggerEndpoint("/swagger/SmartSchoolAPI/swagger.json", "smartschoolapi");
+                options.SwaggerEndpoint("/swagger/SmartSchoolAPI/swagger.json", "SmartSchool API");
                 options.RoutePrefix = "";
             });
 

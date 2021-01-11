@@ -25,7 +25,7 @@ namespace SmartSchool.WebAPI.Controllers
         /// </summary>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public AlunoController(IRepository repo, IMapper mapper)    //Recebe nosso banco de dados como context
+        public AlunoController(IRepository repo, IMapper mapper)    
         {
             _mapper = mapper;
             _repo = repo;
@@ -75,7 +75,7 @@ namespace SmartSchool.WebAPI.Controllers
                 return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoDto>(aluno));
             };
 
-            return BadRequest($"Aluno não cadastrado!");
+            return BadRequest("Aluno não cadastrado!");
         }
 
         /// <summary>

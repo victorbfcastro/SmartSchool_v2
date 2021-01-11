@@ -10,7 +10,7 @@ using SmartSchool.WebAPI.Models;
 namespace SmartSchool.WebAPI.Controllers
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -24,7 +24,7 @@ namespace SmartSchool.WebAPI.Controllers
         /// </summary>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public ProfessorController(IRepository repo, IMapper mapper)    //Recebe nosso banco de dados como context
+        public ProfessorController(IRepository repo, IMapper mapper)    
         {
             _mapper = mapper;
             _repo = repo;
@@ -124,7 +124,7 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Método responsável por remover um professor
+        /// Método responsável por remover um professor identificado pelo ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

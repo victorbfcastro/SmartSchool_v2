@@ -29,6 +29,9 @@ namespace SmartSchool.WebAPI.Helpers
 
             CreateMap<ProfessorDto, Professor>();
             CreateMap<Professor, ProfessorRegistrarDto>().ReverseMap();
+        
+            CreateMap<DisciplinaDto, Disciplina>();
+            CreateMap<Disciplina, DisciplinaDto>();
         }
     }
 }
