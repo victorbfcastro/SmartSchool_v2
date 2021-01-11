@@ -9,21 +9,33 @@ using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+
     [ApiController]
     [Route("api/[controller]")]
     public class AlunoController : ControllerBase
     {
         public readonly IRepository _repo;
         private readonly IMapper _mapper;
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public AlunoController(IRepository repo, IMapper mapper)    //Recebe nosso banco de dados como context
         {
             _mapper = mapper;
             _repo = repo;
         }
 
-        //Rota /api/aluno
-        [HttpGet]   //Pega todos os alunos
+        /// <summary>
+        /// Método responsável por retornar todos os alunos
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public IActionResult Get()
         {
             var alunos = _repo.GetAllAlunos(true);
@@ -31,8 +43,12 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
 
-        //Rota /api/aluno/byid/1
-        [HttpGet("{id}")]  //Pega um aluno pelo Id
+        /// <summary>
+        /// Método responsável por retornar um aluno por meio do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]  
         public IActionResult GetById(int id)
         {
             var aluno = _repo.GetAlunoById(id, false);
@@ -43,8 +59,12 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(alunoDto);
         }
 
-        // Rota /api/aluno
-        [HttpPost]   //Adiciona ao banco de dados
+        /// <summary>
+        /// Método responsável por adicionar um novo aluno
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]  
         public IActionResult Post(AlunoRegistrarDto model)
         {
             var aluno = _mapper.Map<Aluno>(model);
@@ -58,8 +78,13 @@ namespace SmartSchool.WebAPI.Controllers
             return BadRequest($"Aluno não cadastrado!");
         }
 
-        // Rota /api/aluno/1
-        [HttpPut("{id}")]   //Atualiza o banco de dados
+        /// <summary>
+        /// Método responsável por atualizar dados de um aluno identificado pelo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]  
         public IActionResult Put(int id, AlunoRegistrarDto model)
         {
             var aluno = _repo.GetAlunoById(id, false);
@@ -76,8 +101,13 @@ namespace SmartSchool.WebAPI.Controllers
             return BadRequest($"Aluno não atualizado!");
         }
 
-        // Rota /api/aluno/1
-        [HttpPatch("{id}")]   //Atualiza o banco de dados
+        /// <summary>
+        /// Método responsável por atualizar dados de um aluno identificado pelo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPatch("{id}")] 
         public IActionResult Patch(int id, AlunoRegistrarDto model)
         {
             var aluno = _repo.GetAlunoById(id, false);
@@ -94,8 +124,12 @@ namespace SmartSchool.WebAPI.Controllers
             return BadRequest($"Aluno não atualizado!");
         }
 
-        // Rota /api/aluno/1
-        [HttpDelete("{id}")]   //Pega todos os alunos
+        /// <summary>
+        /// Método responsável por remover um aluno identificado pelo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]   
         public IActionResult Delete(int id)
         {
             var aluno = _repo.GetAlunoById(id, false);

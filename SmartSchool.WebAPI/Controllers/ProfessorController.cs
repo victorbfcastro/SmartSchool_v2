@@ -9,6 +9,9 @@ using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class ProfessorController : ControllerBase
@@ -16,14 +19,21 @@ namespace SmartSchool.WebAPI.Controllers
 
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public ProfessorController(IRepository repo, IMapper mapper)    //Recebe nosso banco de dados como context
         {
             _mapper = mapper;
             _repo = repo;
         }
 
-
+        /// <summary>
+        /// Método responsável por retornar todos os professores
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,7 +41,11 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professor));
         }
 
-
+        /// <summary>
+        /// Método responsável por retornar um professor identificado pelo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -43,6 +57,11 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(professorDto);
         }
 
+        /// <summary>
+        /// Método responsável por adicionar um professor
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(ProfessorRegistrarDto model)
         {
@@ -58,7 +77,12 @@ namespace SmartSchool.WebAPI.Controllers
             return BadRequest($"Professor não cadastrado!");
         }
 
-
+        /// <summary>
+        /// Método responsável por atualizar um professor identificado pelo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, ProfessorRegistrarDto model)
         {
@@ -76,7 +100,12 @@ namespace SmartSchool.WebAPI.Controllers
             return BadRequest($"Professor não atualizado!");
         }
 
-
+        /// <summary>
+        /// Método responsável por atualizar um professor identificado pelo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, ProfessorRegistrarDto model)
         {
@@ -94,7 +123,11 @@ namespace SmartSchool.WebAPI.Controllers
             return BadRequest($"Professor não atualizado!");
         }
 
-
+        /// <summary>
+        /// Método responsável por remover um professor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

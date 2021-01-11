@@ -51,3 +51,9 @@ C:\Users\vfontour\source\repos\Smartschool\SmartSchool.WebAPI\bin\Debug\netcorea
 C:\Users\vfontour\source\repos\Smartschool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\obj\Debug\netcoreapp3.1\SmartSchool.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\vfontour\source\repos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\SmartSchool.WebAPI.xml
