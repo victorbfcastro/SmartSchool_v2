@@ -1,8 +1,9 @@
 using AutoMapper;
-using SmartSchool.WebAPI.Dtos;
+using SmartSchool.WebAPI.V1.Dtos;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.Helpers;
 
-namespace SmartSchool.WebAPI.Helpers
+namespace SmartSchool.WebAPI.V1.Profiles
 {
     public class SmartSchoolProfile : Profile
     {
@@ -30,8 +31,8 @@ namespace SmartSchool.WebAPI.Helpers
             CreateMap<ProfessorDto, Professor>();
             CreateMap<Professor, ProfessorRegistrarDto>().ReverseMap();
         
-            CreateMap<DisciplinaDto, Disciplina>();
-            CreateMap<Disciplina, DisciplinaDto>();
+            // CreateMap<DisciplinaDto, Disciplina>();
+            // CreateMap<Disciplina, DisciplinaDto>();
         }
     }
 }

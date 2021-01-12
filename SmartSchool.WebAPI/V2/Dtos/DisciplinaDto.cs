@@ -1,6 +1,6 @@
 using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.WebAPI.Dtos
+namespace SmartSchool.WebAPI.V2.Dtos
 {
     public class DisciplinaDto
     {
