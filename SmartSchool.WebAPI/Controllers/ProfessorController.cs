@@ -13,7 +13,8 @@ namespace SmartSchool.WebAPI.Controllers
     ///
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
 
@@ -24,7 +25,7 @@ namespace SmartSchool.WebAPI.Controllers
         /// </summary>
         /// <param name="repo"></param>
         /// <param name="mapper"></param>
-        public ProfessorController(IRepository repo, IMapper mapper)    
+        public ProfessorController(IRepository repo, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;
