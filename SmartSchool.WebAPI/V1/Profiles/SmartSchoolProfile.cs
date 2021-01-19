@@ -10,29 +10,30 @@ namespace SmartSchool.WebAPI.V1.Profiles
         public SmartSchoolProfile()
         {
             CreateMap<Aluno, AlunoDto>()
-            .ForMember(
-                dest => dest.Nome,
-                opt => opt.MapFrom(src => $"{src.Nome} {src.Sobrenome}")
-            )
-            .ForMember(
-                dest => dest.Idade,
-                opt => opt.MapFrom(src => src.DataNasc.GetCurrentAge())
-            );
-            
+                .ForMember(
+                    dest => dest.Nome,
+                    opt => opt.MapFrom(src => $"{src.Nome} {src.Sobrenome}")
+                )
+                .ForMember(
+                    dest => dest.Idade,
+                    opt => opt.MapFrom(src => src.DataNasc.GetCurrentAge())
+                );
+
             CreateMap<AlunoDto, Aluno>();
             CreateMap<Aluno, AlunoRegistrarDto>().ReverseMap();
-
+            CreateMap<Aluno, AlunoPatchDto>().ReverseMap();
+            
             CreateMap<Professor, ProfessorDto>()
-            .ForMember(
-                dest => dest.Nome,
-                opt => opt.MapFrom(src => $"{src.Nome} {src.Sobrenome}")
-            );
-
+                .ForMember(
+                    dest => dest.Nome,
+                    opt => opt.MapFrom(src => $"{src.Nome} {src.Sobrenome}")
+                );
+            
             CreateMap<ProfessorDto, Professor>();
             CreateMap<Professor, ProfessorRegistrarDto>().ReverseMap();
-        
-            // CreateMap<DisciplinaDto, Disciplina>();
-            // CreateMap<Disciplina, DisciplinaDto>();
+
+            CreateMap<DisciplinaDto, Disciplina>().ReverseMap();
+            CreateMap<CursoDto, Curso>().ReverseMap();
         }
     }
 }
